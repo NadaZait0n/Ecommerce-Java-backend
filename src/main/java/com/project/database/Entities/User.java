@@ -1,10 +1,8 @@
 package com.project.database.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user")
@@ -50,6 +48,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
     
+    @OneToMany(mappedBy="parent")
+    private List<Order> children;
 }
