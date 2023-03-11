@@ -37,11 +37,16 @@ public class OrderController {
 
 
     @PostMapping
-    public void insert(@RequestBody Order order ){
-        orderService.insert(order);
+    public Order insert(@RequestBody Order order ){
+        return orderService.insert(order);
     }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id){
         orderService.delete(id);
     }
+
+//     @GetMapping("get/{id}")
+//      public List<Order> getOrders(int userId) {
+//     return orderService.getOrders(userId);
+//   }
 }
