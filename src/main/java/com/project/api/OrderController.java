@@ -45,8 +45,8 @@ public class OrderController {
         orderService.delete(id);
     }
 
-//     @GetMapping("get/{id}")
-//      public List<Order> getOrders(int userId) {
-//     return orderService.getOrders(userId);
+//     @GetMapping
+//      public List<Order> getOrders(Useruser) {
+//     return orderService.getOrders(user);
 //   }
 }

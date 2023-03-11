@@ -1,5 +1,7 @@
 package com.project.database.Entities;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,4 +29,11 @@ public class Order {
    @ManyToOne(cascade = CascadeType.MERGE)
    @JoinColumn(name="user_id")
    private User parent;
+
+   @ManyToMany(fetch = FetchType.LAZY,
+    cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinTable(name = "order_has_product",
+    joinColumns=@JoinColumn(name = "order_id"),
+    inverseJoinColumns = @JoinColumn(name="product_id" ) )
+    private List<Product> products;
 }

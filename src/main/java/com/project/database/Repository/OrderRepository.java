@@ -11,6 +11,6 @@ import com.project.database.Entities.User;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer>  {
 
-    List<Order> findByUserId(int id);
+  //  List<Order> findByUser(User user);
 
 }

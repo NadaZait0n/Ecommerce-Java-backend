@@ -31,9 +31,9 @@ public class OrderService {
     public void delete(int id){
         orderDao.deleteById(id);
     }
-    public List<Order> getOrders(int id) {
-        return orderDao.findByUserId(id);
-      }
+    // public List<Order> getOrders(User user) {
+    //     return orderDao.findByUser(user);
+    //   }
     
 
 }

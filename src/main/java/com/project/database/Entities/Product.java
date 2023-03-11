@@ -1,5 +1,7 @@
 package com.project.database.Entities;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,4 +28,11 @@ public class Product {
 //private byte[] image;
 //    @OneToMany(mappedBy="product_id")
 //    private Set<Image> ProductImage;
+
+@ManyToMany(fetch = FetchType.LAZY,
+    cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinTable(name = "order_has_product",
+    joinColumns=@JoinColumn(name = "product_id"),
+    inverseJoinColumns = @JoinColumn(name="order_id" ) )
+    private List<Order> orders;
 }
