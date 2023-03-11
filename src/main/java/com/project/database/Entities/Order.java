@@ -10,12 +10,13 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int quantity;
     private int total;
     private String name;
