@@ -49,4 +49,12 @@ public class OrderController {
 //      public List<Order> getOrders(Useruser) {
 //     return orderService.getOrders(user);
 //   }
+
+@GetMapping("/user/{userId}")
+    public List<Order> findByUser(@PathVariable int userId){
+        return  this.orderService.findByUser(userId);
+  
+  
+  
+      }
 }

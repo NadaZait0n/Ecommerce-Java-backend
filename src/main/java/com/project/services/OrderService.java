@@ -34,6 +34,10 @@ public class OrderService {
     // public List<Order> getOrders(User user) {
     //     return orderDao.findByUser(user);
     //   }
+
+    public List<Order> findByUser(int userId){
+        return  this.orderDao.findByUser(userId);
+      }
     
 
 }

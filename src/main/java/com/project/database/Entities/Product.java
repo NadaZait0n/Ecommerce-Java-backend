@@ -29,10 +29,9 @@ public class Product {
 //    @OneToMany(mappedBy="product_id")
 //    private Set<Image> ProductImage;
 
-@ManyToMany(fetch = FetchType.LAZY,
-    cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinTable(name = "order_has_product",
-    joinColumns=@JoinColumn(name = "product_id"),
-    inverseJoinColumns = @JoinColumn(name="order_id" ) )
-    private List<Order> orders;
+// @ManyToMany(fetch = FetchType.LAZY)
+//     @JoinTable(name = "order_has_product",
+//     joinColumns=@JoinColumn(name = "product_id"),
+//     inverseJoinColumns = @JoinColumn(name="order_id" ) )
+//     private List<Order> orders;
 }

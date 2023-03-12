@@ -30,10 +30,10 @@ public class Order {
    @JoinColumn(name="user_id")
    private User parent;
 
-   @ManyToMany(fetch = FetchType.LAZY,
-    cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinTable(name = "order_has_product",
-    joinColumns=@JoinColumn(name = "order_id"),
-    inverseJoinColumns = @JoinColumn(name="product_id" ) )
-    private List<Product> products;
+//    @ManyToMany(fetch = FetchType.LAZY,
+//     cascade=CascadeType.ALL)
+//     @JoinTable(name = "order_has_product",
+//     joinColumns=@JoinColumn(name = "order_id"),
+//     inverseJoinColumns = @JoinColumn(name="product_id" ) )
+//     private List<Product> products;
 }
