@@ -33,6 +33,11 @@ public class Product {
 //     @JoinTable(name = "order_has_product",
 //     joinColumns=@JoinColumn(name = "product_id"),
 //     inverseJoinColumns = @JoinColumn(name="order_id" ) )
+//,cascade={CascadeType.MERGE, CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH }
 //     private List<Order> orders;
-//private List<Order> orders;
+
+
+// @ManyToMany(mappedBy="products")
+// private List<Order> orders;
+
 }
