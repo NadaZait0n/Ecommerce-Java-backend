@@ -26,9 +26,9 @@ public class Order {
     private String phone;
 
 
-   @ManyToOne(cascade = CascadeType.MERGE)
+   @ManyToOne()
    @JoinColumn(name="user_id")
-   private User parent;
+   private User user;
 
 //    @ManyToMany(fetch = FetchType.LAZY,
 //     cascade=CascadeType.ALL)

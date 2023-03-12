@@ -1,6 +1,7 @@
 package com.project.database.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer>  {
 
   //  List<Order> findByUser(User user);
 
-  @Query(value = "select * from orders where user_id=:id",nativeQuery=true)
-  List<Order> findByUser(@Param("id")int id);
+  //@Query(value = "select * from orders where user_id=:id",nativeQuery=true)
+  List<Order> findByUser(Optional<User> optional);
 
 }

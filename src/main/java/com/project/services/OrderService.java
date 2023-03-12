@@ -8,15 +8,19 @@ import org.springframework.stereotype.Service;
 
 import com.project.database.Entities.Order;
 import com.project.database.Repository.OrderRepository;
+import com.project.database.Repository.UserRepositery;
 
 @Service
 public class OrderService {
 
     private final OrderRepository orderDao;
+    private final UserRepositery userRepositery;
+
 
     @Autowired
-    public OrderService(OrderRepository orderDao) {
+    public OrderService(OrderRepository orderDao,UserRepositery userRepositery) {
         this.orderDao = orderDao;
+        this.userRepositery=userRepositery;
     }
     public List<Order>FindAll(){
         return orderDao.findAll();
@@ -36,7 +40,8 @@ public class OrderService {
     //   }
 
     public List<Order> findByUser(int userId){
-        return  this.orderDao.findByUser(userId);
+          this.userRepositery.findById(userId);
+        return  this.orderDao.findByUser(this.userRepositery.findById(userId));
       }
     
 

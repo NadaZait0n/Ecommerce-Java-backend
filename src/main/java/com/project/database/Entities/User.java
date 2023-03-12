@@ -49,6 +49,6 @@ public class User {
         this.email = email;
     }
     
-    @OneToMany(mappedBy="parent")
-    private List<Order> children;
+    @OneToMany(mappedBy="user")
+    private List<Order> orders;
 }
