@@ -21,9 +21,11 @@ public class Product {
     private int id;
     private String name;
     private double price;
+    private String size;
     private String description;
     private int category_id;
     private String image_url;
+
 //@Lob
 //private byte[] image;
 //    @OneToMany(mappedBy="product_id")
