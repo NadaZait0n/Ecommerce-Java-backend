@@ -5,7 +5,6 @@ import com.project.database.Entities.Product;
 import com.project.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +27,7 @@ public class ProductController {
 
     @PostMapping
     public void insert(@RequestBody Product product ){
-        productService.insert(product);
+        productService.Save(product);
     }
 
 
@@ -46,15 +45,18 @@ public class ProductController {
 //    }
 
 
-
-//    @PutMapping
-//    public void update(@RequestBody Product product){
-//        productService.update(product);
-//    }
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id){
         productService.delete(id);
+    }
+    @GetMapping("/categoryWomen")
+    public List<Product> getByCategoryWomen(){
+    return productService.getByCategoryWomen();
+    }
+
+    @GetMapping("/categoryMen")
+    public List<Product> getByCategoryMen(){
+        return productService.getByCategoryMen();
     }
 
 }

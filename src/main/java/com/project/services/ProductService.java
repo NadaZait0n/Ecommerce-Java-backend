@@ -17,26 +17,23 @@ import java.util.Set;
 @Service
 public class ProductService {
     @Autowired
-    private ProductRepository productDao;
+    private ProductRepository productRepo;
 
     public List<Product>FindAll(){
-        return productDao.findAll();
+        return productRepo.findAll();
     }
 
     public Optional<Product> FindById(int id){
-     return productDao.findById(id);
+     return productRepo.findById(id);
     }
 
-    public Product insert (Product product){
-        return productDao.save(product);
+    public Product Save(Product product){
+        return productRepo.save(product);
     }
 
-//    public void update(Product product){
-//        productDao.save(product);
-//    }
 
     public void delete(int id){
-        productDao.deleteById(id);
+        productRepo.deleteById(id);
     }
 
 //    public Set<Image> UploadImage(MultipartFile[] multipartFiles)throws IOException {
@@ -50,4 +47,12 @@ public class ProductService {
 //        }
 //        return images;
 //    }
+
+        public List<Product> getByCategoryWomen(){
+           return productRepo.FindProductByCategoryWomen();
+    }
+
+    public List<Product> getByCategoryMen(){
+        return productRepo.FindProductByCategoryMen();
+    }
 }
