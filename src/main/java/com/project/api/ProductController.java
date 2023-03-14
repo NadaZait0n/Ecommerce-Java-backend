@@ -30,7 +30,10 @@ public class ProductController {
         productService.Save(product);
     }
 
-
+    @PutMapping
+    public void update(@RequestBody Product product ){
+        productService.Save(product);
+    }
 //    @PostMapping( consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 //    public Product insert(@RequestPart("product") Product product ,
 //                       @RequestPart("imageFile")MultipartFile [] file){
