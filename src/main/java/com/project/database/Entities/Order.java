@@ -1,5 +1,6 @@
 package com.project.database.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -30,16 +31,13 @@ public class Order {
    @JoinColumn(name="user_id")
    private User user;
 
-//    @ManyToMany(fetch = FetchType.LAZY,
-//     cascade=CascadeType.ALL)
-//     @JoinTable(name = "order_has_product",
-//     joinColumns=@JoinColumn(name = "order_id"),
-//     inverseJoinColumns = @JoinColumn(name="product_id" ) )
-//,cascade={CascadeType.MERGE, CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH }
 
 
-@ManyToMany()
-@JoinTable(name = "order_has_product",joinColumns=@JoinColumn(name = "order_id"),
-inverseJoinColumns = @JoinColumn(name="product_id" ) )
-     private List<Product> products;
+// @ManyToMany()
+// @JoinTable(name = "order_has_product",joinColumns=@JoinColumn(name = "order_id"),
+// inverseJoinColumns = @JoinColumn(name="product_id" ) )
+//      private List<Product> products;
+
+@OneToMany(mappedBy = "order")
+  private List<OrderHasProduct> quantities;
 }
