@@ -3,6 +3,8 @@ package com.project.database.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.project.database.Entities.user.User;
+
 import jakarta.persistence.*;
 import lombok.*;
 

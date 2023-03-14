@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/products")
-@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
     @Autowired
     private ProductService productService;

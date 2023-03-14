@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.database.Entities.Order;
+import com.project.database.Entities.user.User;
 import com.project.database.Repository.OrderRepository;
-import com.project.database.Repository.UserRepositery;
+import com.project.database.Repository.user.UserRepositery;
 
 @Service
 public class OrderService {
@@ -39,9 +40,10 @@ public class OrderService {
     //     return orderDao.findByUser(user);
     //   }
 
-    public List<Order> findByUser(int userId){
-          this.userRepositery.findById(userId);
-        return  this.orderDao.findByUser(this.userRepositery.findById(userId));
+    public List<Order> findByUserr(int userId){
+
+        Optional <User> user= this.userRepositery.findById(userId);
+        return  this.orderDao.findByUser(user);
       }
     
 

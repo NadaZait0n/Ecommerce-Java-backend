@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.project.database.Entities.Order;
-import com.project.database.Entities.User;
+import com.project.database.Entities.user.User;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer>  {

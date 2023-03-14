@@ -52,7 +52,7 @@ public class OrderController {
 
 @GetMapping("/user/{userId}")
     public List<Order> findByUser(@PathVariable int userId){
-        return  this.orderService.findByUser(userId);
+        return  this.orderService.findByUserr(userId);
   
   
   
