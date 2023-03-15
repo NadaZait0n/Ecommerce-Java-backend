@@ -40,6 +40,6 @@ public class Order {
 // inverseJoinColumns = @JoinColumn(name="product_id" ) )
 //      private List<Product> products;
 
-@OneToMany(mappedBy = "order",cascade=CascadeType.REMOVE)
+@OneToMany(mappedBy = "order",cascade=CascadeType.REMOVE,orphanRemoval = true)
   private List<OrderHasProduct> quantities;
 }
