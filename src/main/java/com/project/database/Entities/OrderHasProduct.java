@@ -21,7 +21,7 @@ public class OrderHasProduct {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
     
-    @JsonIgnore
+    
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "order_id")
      private Order order;

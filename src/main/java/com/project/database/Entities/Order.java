@@ -3,6 +3,7 @@ package com.project.database.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.database.Entities.user.User;
 
 import jakarta.persistence.*;
@@ -39,7 +40,7 @@ public class Order {
 // @JoinTable(name = "order_has_product",joinColumns=@JoinColumn(name = "order_id"),
 // inverseJoinColumns = @JoinColumn(name="product_id" ) )
 //      private List<Product> products;
-
+@JsonIgnore
 @OneToMany(mappedBy = "order",cascade=CascadeType.REMOVE,orphanRemoval = true)
   private List<OrderHasProduct> quantities;
 }
