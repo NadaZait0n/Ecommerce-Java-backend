@@ -1,6 +1,8 @@
 package com.project.services.user;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +27,6 @@ public class UserService {
   private final AuthenticationManager authenticationManager;
   private final UserRepositery userRepositery;
 
-
   /*
    * register => create a user , save it into data base , generate token for that
    * user
@@ -38,84 +39,90 @@ public class UserService {
         .gender(request.getGender())
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword()))
-        .role("user")
+        .role("USER")
         .build();
-        if (user!=null)
-        {
-          User savedUser = userRepositery.save(user);
-          String jwtToken = jwtService.generateToken(user);
-          return AuthenticationResponse.builder()
+        
+      userRepositery.save(user);
+      String jwtToken = jwtService.generateToken(user);
+      return AuthenticationResponse.builder()
           .success(true)
           .token(jwtToken)
-
+          .email(request.getEmail())
+          .message("Welcome " +request.getName())
           .build();
-        }
-        else{
-          return AuthenticationResponse.builder()
-          .success(false)
-          .build();
-        }
+    // } else {
+    //   return AuthenticationResponse.builder()
+    //       .success(false)
+    //       .build();
+    // }
 
-    
     // saveUserToken(savedUser, jwtToken);
-   
+
   }
 
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    System.out.println("before login");
+    System.out.println(request.getEmail());
+    System.out.println(request.getPassword());
+
     authenticationManager.authenticate(
-    new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
+
+      new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
     // if getEmail or getPassword() is incorrect will throw exeception
     // this line after user authenticated
     // generate token with every sign in
+    System.out.println("after login");
+
     var user = userRepositery.findByEmail(request.getEmail())
         .orElse(null);
 
-        if (user!= null)
-        {
-          var jwtToken = jwtService.generateToken(user);
-          // revokeAllUserTokens(user)
-          return AuthenticationResponse.builder()
-              .success(true)
-              .token(jwtToken)
-              .build();
-        }else{
-          return AuthenticationResponse.builder()
+
+        Map<String,Object> info = new HashMap<>();
+        info.put("email", request.getEmail());
+       
+       
+    if (user != null) {
+      var jwtToken = jwtService.generateToken(info,user);
+
+      String message="";
+      if (request.getEmail().equals("admin@gmail.com")) {
+        message = "Hello  Admin";
+      } else {
+        message = "Hello " +user.getName();
+      }
+
+      // revokeAllUserTokens(user)
+      return AuthenticationResponse.builder()
+          .success(true)
+          .token(jwtToken)
+          .message(message)
+          .name(user.getName())
+          .email(request.getEmail())
+          .build();
+    } else {
+      return AuthenticationResponse.builder()
           .success(false)
           .build();
-        }
+    }
 
-  
   }
 
-  private void saveUserToken(User user, String jwtToken) {
-    // var token = Token.builder()
-    // .user(user)
-    // .token(jwtToken)
-    // .tokenType("BEARER")
-    // .expired(false)
-    // .revoked(false)
-    // .build();
-    // tokenRepository.save(token);
-  }
+ 
 
-
-
-
-  
-  public List<User>getAll() {
-      return userRepositery.findAll();
+  public List<User> getAll() {
+    return userRepositery.findAll();
   }
 
   public User addUser(User user) {
-      return userRepositery.save(user);
+    return userRepositery.save(user);
   }
 
   public User getById(int id) {
-      return userRepositery.findById(id).orElse(null);
+    return userRepositery.findById(id).orElse(null);
   }
 
   public void deleteUser(int id) {
-      userRepositery.deleteById(id);
+    userRepositery.deleteById(id);
   }
 
 }

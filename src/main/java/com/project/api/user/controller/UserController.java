@@ -17,6 +17,8 @@ import com.project.api.user.dto.RegisterRequest;
 import com.project.database.Entities.user.User;
 import com.project.services.user.UserService;
 
+import jakarta.annotation.security.RolesAllowed;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/auth")
@@ -32,17 +34,17 @@ public class UserController {
     return ResponseEntity.ok(service.register(request));
   }
 
-  @PostMapping("/authenticate")
+  //  @RolesAllowed("ROLE_ADMIN")
+  @PostMapping("/login")
   public ResponseEntity<AuthenticationResponse> authenticate(
-      @RequestBody AuthenticationRequest request) {
+    @RequestBody AuthenticationRequest request) {
     return ResponseEntity.ok(service.authenticate(request));
   }
-
+  @RolesAllowed("ROLE_ADMIN")
   @GetMapping("/users")
   public List<User> getAllUsers() {
     return userService.getAll();
   }
-
   @PostMapping("/users")
   public User addProduct(@RequestBody User user) {
     return userService.addUser(user);

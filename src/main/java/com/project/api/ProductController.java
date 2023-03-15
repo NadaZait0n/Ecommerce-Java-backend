@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 
@@ -26,8 +25,6 @@ public class ProductController {
     public Optional <Product>FindById(@PathVariable int id){
        return productService.FindById(id);
     }
-
-
     @PostMapping
     public void insert(@RequestBody Product product ){
         productService.Save(product);
